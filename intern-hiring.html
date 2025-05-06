@@ -330,9 +330,9 @@
     <script src="main.js"></script>
     <script>
         // Google Sheets configuration
-        const SPREADSHEET_ID = '1nwWjSerdpl7BGesL7ykjKXBYhnWcZdB0nNIbcNsOP94'; // Replace with your spreadsheet ID
-        const API_KEY = 'AIzaSyCn8OWo7H31LHveOlEXMy4dWHcNutj9AlY'; // Replace with your API key
-        const SHEET_NAME = 'interndata'; // Your sheet name
+        const SPREADSHEET_ID = '1nwWjSerdpl7BGesL7ykjKXBYhnWcZdB0nNIbcNsOP94';
+        const API_KEY = 'AIzaSyCn8OWo7H31LHveOlEXMy4dWHcNutj9AlY';
+        const SHEET_NAME = 'interndata';
 
         document.getElementById('internApplicationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -349,21 +349,21 @@
             applicationData.status = 'Pending';
             
             try {
-                // Prepare data for Google Sheets
+                // Prepare data for Google Sheets in exact column order
                 const values = [
                     [
-                        applicationData.name,
-                        applicationData.email,
-                        applicationData.phone,
-                        applicationData.city,
-                        applicationData.college,
-                        applicationData.course,
-                        applicationData.position,
-                        applicationData.skills,
-                        applicationData.experience,
-                        applicationData.why_join,
-                        applicationData.timestamp,
-                        applicationData.status
+                        applicationData.name,        // Name
+                        applicationData.email,       // Email
+                        applicationData.phone,       // Phone
+                        applicationData.city,        // City
+                        applicationData.college,     // College
+                        applicationData.course,      // Course
+                        applicationData.position,    // Position
+                        applicationData.skills,      // Skills
+                        applicationData.experience,  // Experience
+                        applicationData.why_join,    // Why Join
+                        applicationData.timestamp,   // Timestamp
+                        applicationData.status       // Status
                     ]
                 ];
 
