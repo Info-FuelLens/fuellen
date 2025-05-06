@@ -239,16 +239,149 @@
     </footer>
 
     <script>
-        // Fetch applications from JSON file
-        fetch('internships.json')
-            .then(response => response.json())
-            .then(data => {
-                // Store the applications in localStorage
-                localStorage.setItem('internApplications', JSON.stringify(data.applications));
-            })
-            .catch(error => {
+        // Google Sheets configuration
+        const SPREADSHEET_ID = '1nwWjSerdpl7BGesL7ykjKXBYhnWcZdB0nNIbcNsOP94'; // Replace with your spreadsheet ID
+        const API_KEY = 'AIzaSyCn8OWo7H31LHveOlEXMy4dWHcNutj9AlY'; // Replace with your API key
+        const SHEET_NAME = 'interndata'; // Your sheet name
+
+        async function loadApplications() {
+            try {
+                const response = await fetch(
+                    `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_NAME}!A:L?key=${API_KEY}`
+                );
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch applications');
+                }
+
+                const data = await response.json();
+                const applications = data.values.slice(1).map(row => ({
+                    name: row[0],
+                    email: row[1],
+                    phone: row[2],
+                    city: row[3],
+                    college: row[4],
+                    course: row[5],
+                    position: row[6],
+                    skills: row[7],
+                    experience: row[8],
+                    why_join: row[9],
+                    timestamp: row[10],
+                    status: row[11]
+                }));
+
+                const applicationsList = document.getElementById('applicationsList');
+                applicationsList.innerHTML = '';
+
+                applications.forEach((application, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${application.name}</td>
+                        <td>${application.email}</td>
+                        <td>${application.position}</td>
+                        <td>${application.college}</td>
+                        <td>${application.status}</td>
+                        <td>
+                            <button onclick="updateStatus(${index}, 'Hired')" class="btn btn-success">Hire</button>
+                            <button onclick="updateStatus(${index}, 'Rejected')" class="btn btn-danger">Reject</button>
+                        </td>
+                    `;
+                    applicationsList.appendChild(row);
+                });
+            } catch (error) {
                 console.error('Error loading applications:', error);
-            });
+                alert('Failed to load applications. Please try again.');
+            }
+        }
+
+        async function loadHiredInterns() {
+            try {
+                const response = await fetch(
+                    `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_NAME}!A:L?key=${API_KEY}`
+                );
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch applications');
+                }
+
+                const data = await response.json();
+                const applications = data.values.slice(1).map(row => ({
+                    name: row[0],
+                    email: row[1],
+                    phone: row[2],
+                    city: row[3],
+                    college: row[4],
+                    course: row[5],
+                    position: row[6],
+                    skills: row[7],
+                    experience: row[8],
+                    why_join: row[9],
+                    timestamp: row[10],
+                    status: row[11]
+                }));
+
+                const hiredInternsList = document.getElementById('hiredInternsList');
+                hiredInternsList.innerHTML = '';
+
+                const hiredInterns = applications.filter(app => app.status === 'Hired');
+                hiredInterns.forEach(intern => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${intern.name}</td>
+                        <td>${intern.position}</td>
+                        <td>3 Months</td>
+                        <td>${intern.college}</td>
+                        <td>${intern.skills}</td>
+                        <td>Active</td>
+                    `;
+                    hiredInternsList.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error loading hired interns:', error);
+                alert('Failed to load hired interns. Please try again.');
+            }
+        }
+
+        async function updateStatus(index, newStatus) {
+            try {
+                // First, get the current data
+                const response = await fetch(
+                    `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_NAME}!A:L?key=${API_KEY}`
+                );
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch applications');
+                }
+
+                const data = await response.json();
+                const values = data.values;
+                
+                // Update the status in the row
+                values[index + 1][11] = newStatus; // Status is in column L (12th column)
+
+                // Update the sheet
+                await fetch(
+                    `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_NAME}!A:L?valueInputOption=RAW&key=${API_KEY}`,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            values: values,
+                            majorDimension: 'ROWS'
+                        })
+                    }
+                );
+
+                // Reload the data
+                loadApplications();
+                loadHiredInterns();
+            } catch (error) {
+                console.error('Error updating status:', error);
+                alert('Failed to update status. Please try again.');
+            }
+        }
 
         document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -265,57 +398,6 @@
                 document.getElementById('errorMessage').style.display = 'block';
             }
         });
-
-        function loadApplications() {
-            const applications = JSON.parse(localStorage.getItem('internApplications')) || [];
-            const applicationsList = document.getElementById('applicationsList');
-            applicationsList.innerHTML = '';
-
-            applications.forEach((application, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${application.name}</td>
-                    <td>${application.email}</td>
-                    <td>${application.position}</td>
-                    <td>${application.college}</td>
-                    <td>${application.status}</td>
-                    <td>
-                        <button onclick="updateStatus(${index}, 'Hired')" class="btn btn-success">Hire</button>
-                        <button onclick="updateStatus(${index}, 'Rejected')" class="btn btn-danger">Reject</button>
-                    </td>
-                `;
-                applicationsList.appendChild(row);
-            });
-        }
-
-        function loadHiredInterns() {
-            const applications = JSON.parse(localStorage.getItem('internApplications')) || [];
-            const hiredInternsList = document.getElementById('hiredInternsList');
-            hiredInternsList.innerHTML = '';
-
-            const hiredInterns = applications.filter(app => app.status === 'Hired');
-            hiredInterns.forEach(intern => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${intern.name}</td>
-                    <td>${intern.position}</td>
-                    <td>3 Months</td>
-                    <td>${intern.college}</td>
-                    <td>${intern.skills}</td>
-                    <td>Active</td>
-                `;
-                hiredInternsList.appendChild(row);
-            });
-        }
-
-        function updateStatus(index, newStatus) {
-            const applications = JSON.parse(localStorage.getItem('internApplications')) || [];
-            applications[index].status = newStatus;
-            localStorage.setItem('internApplications', JSON.stringify(applications));
-            
-            loadApplications();
-            loadHiredInterns();
-        }
 
         document.getElementById('showApplications').addEventListener('click', function() {
             document.getElementById('applicationsTable').style.display = 'block';
