@@ -239,7 +239,7 @@
             <div class="container">
                 <h2>Apply Now</h2>
                 <div class="application-form">
-                    <form action="mailto:interns@fuellens.in" method="post" enctype="text/plain">
+                    <form id="internApplicationForm">
                         <input type="text" name="name" placeholder="Full Name" required>
                         <input type="email" name="email" placeholder="Email Address" required>
                         <input type="tel" name="phone" placeholder="Mobile Number" required>
@@ -261,6 +261,9 @@
                         <div class="file-upload">
                             <label for="resume">Upload Resume (PDF)</label>
                             <input type="file" id="resume" name="resume" accept=".pdf" required>
+                        </div>
+                        <div id="successMessage" style="display: none; color: green; text-align: center; margin: 10px 0;">
+                            Application submitted successfully! We'll get back to you soon.
                         </div>
                         <button type="submit" class="btn btn-primary">Submit Application</button>
                     </form>
@@ -329,5 +332,41 @@
     </footer>
 
     <script src="main.js"></script>
+    <script>
+        document.getElementById('internApplicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const applicationData = {};
+            formData.forEach((value, key) => {
+                applicationData[key] = value;
+            });
+            
+            // Add timestamp
+            applicationData.timestamp = new Date().toISOString();
+            applicationData.status = 'Pending';
+            
+            // Get existing applications or initialize empty array
+            let applications = JSON.parse(localStorage.getItem('internApplications') || '[]');
+            
+            // Add new application
+            applications.push(applicationData);
+            
+            // Save to localStorage
+            localStorage.setItem('internApplications', JSON.stringify(applications));
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+    </script>
 </body>
 </html> 
