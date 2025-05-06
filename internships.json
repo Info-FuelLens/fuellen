@@ -1,0 +1,32 @@
+{
+    "applications": [
+        {
+            "name": "Amit R.",
+            "email": "amit@example.com",
+            "phone": "1234567890",
+            "city": "Mumbai",
+            "college": "IIT Bombay",
+            "course": "B.Tech Computer Science, 3rd Year",
+            "position": "Web Development Intern",
+            "skills": "HTML, CSS, JavaScript, React",
+            "experience": "Built a personal portfolio website",
+            "why_join": "I want to gain real-world experience in web development",
+            "timestamp": "2024-03-15T10:30:00Z",
+            "status": "Hired"
+        },
+        {
+            "name": "Priya S.",
+            "email": "priya@example.com",
+            "phone": "9876543210",
+            "city": "Bangalore",
+            "college": "NIT Surat",
+            "course": "B.Tech Information Technology, 2nd Year",
+            "position": "UI/UX Design Intern",
+            "skills": "Figma, Adobe XD, User Research",
+            "experience": "Designed UI for college project",
+            "why_join": "I want to learn professional design practices",
+            "timestamp": "2024-03-16T14:45:00Z",
+            "status": "Hired"
+        }
+    ]
+} 
