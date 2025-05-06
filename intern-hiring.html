@@ -240,23 +240,63 @@
                 <h2>Apply Now</h2>
                 <div class="application-form">
                     <form id="internApplicationForm">
-                        <input type="text" name="name" placeholder="Full Name" required>
-                        <input type="email" name="email" placeholder="Email Address" required>
-                        <input type="tel" name="phone" placeholder="Mobile Number" required>
-                        <input type="text" name="city" placeholder="City" required>
-                        <input type="text" name="college" placeholder="College Name" required>
-                        <input type="text" name="course" placeholder="Current Course & Year" required>
-                        <select name="position" required>
-                            <option value="">Select Role</option>
-                            <option value="Web Development Intern">Web Development Intern</option>
-                            <option value="Backend Intern">Backend Intern</option>
-                            <option value="UI/UX Design Intern">UI/UX Design Intern</option>
-                            <option value="Marketing Intern">Marketing Intern</option>
-                            <option value="Data Analytics Intern">Data Analytics Intern</option>
-                        </select>
-                        <textarea name="skills" placeholder="Your Skills (comma separated)" required></textarea>
-                        <textarea name="experience" placeholder="Previous Experience (if any)"></textarea>
-                        <textarea name="why_join" placeholder="Why do you want to join FuelLens?" required></textarea>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" placeholder="Enter your city" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="college">College</label>
+                            <input type="text" id="college" name="college" placeholder="Enter your college name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="course">Course</label>
+                            <input type="text" id="course" name="course" placeholder="Enter your course and year" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="position">Position</label>
+                            <select id="position" name="position" required>
+                                <option value="">Select Position</option>
+                                <option value="Web Development Intern">Web Development Intern</option>
+                                <option value="Backend Intern">Backend Intern</option>
+                                <option value="UI/UX Design Intern">UI/UX Design Intern</option>
+                                <option value="Marketing Intern">Marketing Intern</option>
+                                <option value="Data Analytics Intern">Data Analytics Intern</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="skills">Skills</label>
+                            <textarea id="skills" name="skills" placeholder="Enter your skills (comma separated)" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience">Experience</label>
+                            <textarea id="experience" name="experience" placeholder="Enter your previous experience"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="why_join">Why Join</label>
+                            <textarea id="why_join" name="why_join" placeholder="Why do you want to join FuelLens?" required></textarea>
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Submit Application</button>
                     </form>
                     <div id="applicationSuccess" class="success-message" style="display: none;">
@@ -266,6 +306,65 @@
                 </div>
             </div>
         </section>
+
+        <style>
+            .application-form {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 500;
+                color: #333;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                font-size: 16px;
+                transition: border-color 0.3s;
+            }
+
+            .form-group input:focus,
+            .form-group select:focus,
+            .form-group textarea:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+
+            .form-group textarea {
+                min-height: 100px;
+                resize: vertical;
+            }
+
+            .success-message {
+                margin-top: 20px;
+                padding: 15px;
+                background: #d4edda;
+                color: #155724;
+                border-radius: 5px;
+                text-align: center;
+            }
+
+            .success-message i {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+        </style>
 
         <section class="contact-section">
             <div class="container">
