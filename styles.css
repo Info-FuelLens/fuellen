@@ -142,6 +142,11 @@
     font-size: 1.5rem;
     color: var(--dark-color);
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-btn.active {
+    transform: rotate(90deg);
 }
 
 @media (max-width: 768px) {
@@ -164,12 +169,15 @@
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
+        max-height: 0;
+        overflow: hidden;
     }
 
     .nav-links.active {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
+        max-height: 500px;
     }
 
     .features-dropdown .dropdown-menu {
@@ -180,10 +188,14 @@
         visibility: visible;
         transform: none;
         display: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
     }
 
     .features-dropdown:hover .dropdown-menu {
         display: block;
+        max-height: 200px;
     }
 }
 
