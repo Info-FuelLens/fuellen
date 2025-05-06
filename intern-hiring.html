@@ -248,25 +248,21 @@
                         <input type="text" name="course" placeholder="Current Course & Year" required>
                         <select name="position" required>
                             <option value="">Select Role</option>
-                            <option value="web">Web Development Intern</option>
-                            <option value="backend">Backend Intern</option>
-                            <option value="design">UI/UX Design Intern</option>
-                            <option value="marketing">Marketing Intern</option>
-                            <option value="analytics">Data Analytics Intern</option>
+                            <option value="Web Development Intern">Web Development Intern</option>
+                            <option value="Backend Intern">Backend Intern</option>
+                            <option value="UI/UX Design Intern">UI/UX Design Intern</option>
+                            <option value="Marketing Intern">Marketing Intern</option>
+                            <option value="Data Analytics Intern">Data Analytics Intern</option>
                         </select>
-                        <input type="url" name="linkedin" placeholder="LinkedIn Profile (optional)">
-                        <input type="url" name="portfolio" placeholder="Portfolio/GitHub Link">
-                        <input type="text" name="reference" placeholder="Reference (if any)">
-                        <textarea name="message" placeholder="Why do you want to join FuelLens?" required></textarea>
-                        <div class="file-upload">
-                            <label for="resume">Upload Resume (PDF)</label>
-                            <input type="file" id="resume" name="resume" accept=".pdf" required>
-                        </div>
-                        <div id="successMessage" style="display: none; color: green; text-align: center; margin: 10px 0;">
-                            Application submitted successfully! We'll get back to you soon.
-                        </div>
+                        <textarea name="skills" placeholder="Your Skills (comma separated)" required></textarea>
+                        <textarea name="experience" placeholder="Previous Experience (if any)"></textarea>
+                        <textarea name="why_join" placeholder="Why do you want to join FuelLens?" required></textarea>
                         <button type="submit" class="btn btn-primary">Submit Application</button>
                     </form>
+                    <div id="applicationSuccess" class="success-message" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Your application has been submitted successfully!</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -333,6 +329,17 @@
 
     <script src="main.js"></script>
     <script>
+        // Fetch applications from JSON file
+        fetch('data/internships.json')
+            .then(response => response.json())
+            .then(data => {
+                // Store the applications in localStorage
+                localStorage.setItem('internApplications', JSON.stringify(data.applications));
+            })
+            .catch(error => {
+                console.error('Error loading applications:', error);
+            });
+
         document.getElementById('internApplicationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -343,12 +350,12 @@
                 applicationData[key] = value;
             });
             
-            // Add timestamp
+            // Add timestamp and status
             applicationData.timestamp = new Date().toISOString();
             applicationData.status = 'Pending';
             
             // Get existing applications or initialize empty array
-            let applications = JSON.parse(localStorage.getItem('internApplications') || '[]');
+            let applications = JSON.parse(localStorage.getItem('internApplications')) || [];
             
             // Add new application
             applications.push(applicationData);
@@ -357,14 +364,14 @@
             localStorage.setItem('internApplications', JSON.stringify(applications));
             
             // Show success message
-            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('applicationSuccess').style.display = 'block';
             
             // Reset form
             this.reset();
             
             // Hide success message after 5 seconds
             setTimeout(() => {
-                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('applicationSuccess').style.display = 'none';
             }, 5000);
         });
     </script>
