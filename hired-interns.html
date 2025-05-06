@@ -240,9 +240,9 @@
 
     <script>
         // Google Sheets configuration
-        const SPREADSHEET_ID = '1nwWjSerdpl7BGesL7ykjKXBYhnWcZdB0nNIbcNsOP94'; // Replace with your spreadsheet ID
-        const API_KEY = 'AIzaSyCn8OWo7H31LHveOlEXMy4dWHcNutj9AlY'; // Replace with your API key
-        const SHEET_NAME = 'interndata'; // Your sheet name
+        const SPREADSHEET_ID = '1nwWjSerdpl7BGesL7ykjKXBYhnWcZdB0nNIbcNsOP94';
+        const API_KEY = 'AIzaSyCn8OWo7H31LHveOlEXMy4dWHcNutj9AlY';
+        const SHEET_NAME = 'interndata';
 
         async function loadApplications() {
             try {
@@ -256,18 +256,18 @@
 
                 const data = await response.json();
                 const applications = data.values.slice(1).map(row => ({
-                    name: row[0],
-                    email: row[1],
-                    phone: row[2],
-                    city: row[3],
-                    college: row[4],
-                    course: row[5],
-                    position: row[6],
-                    skills: row[7],
-                    experience: row[8],
-                    why_join: row[9],
-                    timestamp: row[10],
-                    status: row[11]
+                    name: row[0],        // Name
+                    email: row[1],       // Email
+                    phone: row[2],       // Phone
+                    city: row[3],        // City
+                    college: row[4],     // College
+                    course: row[5],      // Course
+                    position: row[6],    // Position
+                    skills: row[7],      // Skills
+                    experience: row[8],  // Experience
+                    why_join: row[9],    // Why Join
+                    timestamp: row[10],  // Timestamp
+                    status: row[11]      // Status
                 }));
 
                 const applicationsList = document.getElementById('applicationsList');
@@ -306,18 +306,18 @@
 
                 const data = await response.json();
                 const applications = data.values.slice(1).map(row => ({
-                    name: row[0],
-                    email: row[1],
-                    phone: row[2],
-                    city: row[3],
-                    college: row[4],
-                    course: row[5],
-                    position: row[6],
-                    skills: row[7],
-                    experience: row[8],
-                    why_join: row[9],
-                    timestamp: row[10],
-                    status: row[11]
+                    name: row[0],        // Name
+                    email: row[1],       // Email
+                    phone: row[2],       // Phone
+                    city: row[3],        // City
+                    college: row[4],     // College
+                    course: row[5],      // Course
+                    position: row[6],    // Position
+                    skills: row[7],      // Skills
+                    experience: row[8],  // Experience
+                    why_join: row[9],    // Why Join
+                    timestamp: row[10],  // Timestamp
+                    status: row[11]      // Status
                 }));
 
                 const hiredInternsList = document.getElementById('hiredInternsList');
@@ -356,8 +356,8 @@
                 const data = await response.json();
                 const values = data.values;
                 
-                // Update the status in the row
-                values[index + 1][11] = newStatus; // Status is in column L (12th column)
+                // Update the status in the row (Status is in column L)
+                values[index + 1][11] = newStatus;
 
                 // Update the sheet
                 await fetch(
