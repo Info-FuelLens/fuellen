@@ -7,6 +7,47 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Responsive styles for contact page */
+        @media screen and (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+
+            .contact-info, .contact-form {
+                padding: 1rem;
+            }
+
+            .info-item {
+                margin-bottom: 1rem;
+            }
+
+            .map-container {
+                padding: 0 1rem;
+            }
+
+            .map-placeholder {
+                height: 250px !important;
+                max-width: 100% !important;
+            }
+
+            .form-group {
+                margin-bottom: 1rem;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            textarea {
+                width: 100%;
+                padding: 0.75rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
