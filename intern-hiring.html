@@ -215,6 +215,28 @@
             </div>
         </section>
 
+        <section class="payment-section">
+            <div class="container">
+                <h2>Internship Fee Payment</h2>
+                <div class="payment-content">
+                    <div class="payment-info">
+                        <p>Please scan the QR code below to pay your internship fee. The amount will be communicated to you during the application process.</p>
+                    </div>
+                    <div class="qr-code">
+                        <div class="qr-container">
+                            <img src="payment-qr.jpg" alt="Payment QR Code" class="qr-image">
+                            <p class="qr-hint">Scan to pay via UPI</p>
+                        </div>
+                        <div class="payment-action">
+                            <button class="btn btn-pay" onclick="window.open('upi://pay?pa=vaibhavmakwana9979@okhdfcbank&pn=FuelLens&am=1000&cu=INR', '_blank')">
+                                <i class="fas fa-wallet"></i> Pay Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="application-form" class="application-process">
             <div class="container">
                 <h2>Apply Now</h2>
@@ -411,6 +433,100 @@ Note: Please send your resume PDF to this WhatsApp number.
             @media (max-width: 768px) {
                 .form-grid {
                     grid-template-columns: 1fr;
+                }
+            }
+
+            .payment-section {
+                padding: 4rem 0;
+                background-color: #f8f9fa;
+            }
+
+            .payment-content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 2rem;
+                background: white;
+                padding: 2rem;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .payment-info {
+                flex: 1;
+                max-width: 400px;
+            }
+
+            .qr-code {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                padding: 1rem;
+                background: #f8f9fa;
+                border-radius: 10px;
+            }
+
+            .qr-container {
+                text-align: center;
+            }
+
+            .qr-image {
+                max-width: 200px;
+                height: auto;
+                border: 1px solid #ddd;
+                padding: 1rem;
+                border-radius: 10px;
+                background: white;
+            }
+
+            .qr-hint {
+                margin-top: 1rem;
+                color: #666;
+                font-size: 0.9rem;
+            }
+
+            .payment-action {
+                width: 100%;
+                text-align: center;
+            }
+
+            .btn-pay {
+                background-color: #28a745;
+                color: white;
+                padding: 0.8rem 2rem;
+                border: none;
+                border-radius: 5px;
+                font-size: 1.1rem;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .btn-pay:hover {
+                background-color: #218838;
+            }
+
+            .btn-pay i {
+                font-size: 1.2rem;
+            }
+
+            @media (max-width: 768px) {
+                .payment-content {
+                    flex-direction: column;
+                }
+
+                .payment-info {
+                    max-width: 100%;
+                    text-align: center;
+                }
+
+                .qr-code {
+                    width: 100%;
                 }
             }
         </style>
