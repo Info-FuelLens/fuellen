@@ -297,17 +297,6 @@
                                 <textarea id="message" name="message" placeholder="Tell us why you're interested in this internship..." required></textarea>
                             </div>
                             <div class="form-group full-width">
-                                <div class="file-upload">
-                                    <label for="resume">Upload Resume</label>
-                                    <div class="upload-area">
-                                        <i class="fas fa-cloud-upload-alt"></i>
-                                        <p>Drag & drop your resume here or click to browse</p>
-                                        <input type="file" id="resume" name="resume" accept=".pdf" required>
-                                    </div>
-                                    <p class="file-hint">Accepted format: PDF (Max size: 5MB)</p>
-                                </div>
-                            </div>
-                            <div class="form-group full-width">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-paper-plane"></i> Submit Application
                                 </button>
@@ -325,59 +314,68 @@
                 const form = event.target;
                 const formData = new FormData(form);
                 const submitButton = form.querySelector('button[type="submit"]');
+                
+                // Disable submit button and show loading state
                 submitButton.disabled = true;
-                submitButton.textContent = 'Preparing...';
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
                 // Get form values
-                const name = formData.get('name');
-                const email = formData.get('email');
-                const phone = formData.get('phone');
-                const city = formData.get('city');
-                const college = formData.get('college');
-                const enrollment = formData.get('enrollment');
-                const course = formData.get('course');
-                const position = formData.get('position');
-                const linkedin = formData.get('linkedin');
-                const portfolio = formData.get('portfolio');
-                const reference = formData.get('reference');
-                const message = formData.get('message');
+                const formValues = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    city: formData.get('city'),
+                    college: formData.get('college'),
+                    enrollment: formData.get('enrollment'),
+                    course: formData.get('course'),
+                    position: formData.get('position'),
+                    linkedin: formData.get('linkedin'),
+                    portfolio: formData.get('portfolio'),
+                    reference: formData.get('reference'),
+                    message: formData.get('message')
+                };
 
-                // Create message body
+                // Create message body for WhatsApp
                 const messageBody = `
 New Internship Application
 
-Name: ${name}
-Email: ${email}
-Phone: ${phone}
-City: ${city}
-College: ${college}
-Enrollment: ${enrollment}
-Course: ${course}
-Position: ${position}
-LinkedIn: ${linkedin || 'Not provided'}
-Portfolio: ${portfolio || 'Not provided'}
-Reference: ${reference || 'Not provided'}
+Name: ${formValues.name}
+Email: ${formValues.email}
+Phone: ${formValues.phone}
+City: ${formValues.city}
+College: ${formValues.college}
+Enrollment: ${formValues.enrollment}
+Course: ${formValues.course}
+Position: ${formValues.position}
+LinkedIn: ${formValues.linkedin || 'Not provided'}
+Portfolio: ${formValues.portfolio || 'Not provided'}
+Reference: ${formValues.reference || 'Not provided'}
 
 Message:
-${message}
-
-Note: Please send your resume PDF to this WhatsApp number.
+${formValues.message}
                 `;
 
                 // Create WhatsApp link
                 const whatsappLink = `https://wa.me/919157027713?text=${encodeURIComponent(messageBody)}`;
                 
-                // Open WhatsApp
-                window.open(whatsappLink, '_blank');
+                try {
+                    // Show success message
+                    alert('Application submitted successfully! Redirecting to WhatsApp...');
+                    
+                    // Open WhatsApp
+                    window.open(whatsappLink, '_blank');
+                    
+                    // Reset form
+                    form.reset();
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('There was an error preparing your application. Please try again or contact support.');
+                } finally {
+                    // Re-enable submit button
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application';
+                }
 
-                // Show success message
-                alert('Please send your resume PDF to the same WhatsApp number after submitting this form.');
-                
-                // Reset form
-                form.reset();
-                submitButton.disabled = false;
-                submitButton.textContent = 'Submit Application';
-                
                 return false;
             }
         </script>
@@ -445,46 +443,6 @@ Note: Please send your resume PDF to this WhatsApp number.
                 resize: vertical;
             }
 
-            .file-upload {
-                border: 2px dashed #ddd;
-                padding: 2rem;
-                text-align: center;
-                border-radius: 10px;
-                background: #f8f9fa;
-                transition: all 0.3s ease;
-            }
-
-            .file-upload:hover {
-                border-color: #007bff;
-                background: #f0f7ff;
-            }
-
-            .upload-area {
-                padding: 2rem;
-                cursor: pointer;
-            }
-
-            .upload-area i {
-                font-size: 2.5rem;
-                color: #007bff;
-                margin-bottom: 1rem;
-            }
-
-            .upload-area p {
-                margin: 0.5rem 0;
-                color: #666;
-            }
-
-            .file-upload input[type="file"] {
-                display: none;
-            }
-
-            .file-hint {
-                margin-top: 0.5rem;
-                font-size: 0.9rem;
-                color: #666;
-            }
-
             .btn-primary {
                 width: 100%;
                 padding: 1rem;
@@ -508,6 +466,15 @@ Note: Please send your resume PDF to this WhatsApp number.
 
             .btn-primary i {
                 font-size: 1.2rem;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            .fa-spinner {
+                animation: spin 1s linear infinite;
             }
 
             @media (max-width: 768px) {
