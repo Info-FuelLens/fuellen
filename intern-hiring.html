@@ -244,52 +244,73 @@
                     <form id="internshipForm" onsubmit="return handleSubmit(event)">
                         <div class="form-grid">
                             <div class="form-group">
-                                <input type="text" name="name" placeholder="Full Name" required>
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" name="email" placeholder="Email Address" required>
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
                             </div>
                             <div class="form-group">
-                                <input type="tel" name="phone" placeholder="Mobile Number" required>
+                                <label for="phone">Mobile Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter your mobile number" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="city" placeholder="City" required>
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" placeholder="Enter your city" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="college" placeholder="College Name" required>
+                                <label for="college">College Name</label>
+                                <input type="text" id="college" name="college" placeholder="Enter your college name" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="course" placeholder="Current Course & Year" required>
+                                <label for="enrollment">Enrollment Number</label>
+                                <input type="text" id="enrollment" name="enrollment" placeholder="Enter your enrollment number" required>
                             </div>
                             <div class="form-group">
-                                <select name="position" required>
-                                    <option value="">Select Role</option>
+                                <label for="course">Course & Year</label>
+                                <input type="text" id="course" name="course" placeholder="e.g., B.Tech CSE 3rd Year" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="position">Select Role</label>
+                                <select id="position" name="position" required>
+                                    <option value="">Choose a role</option>
                                     <option value="app">App Development Intern</option>
                                     <option value="design">UI/UX Design Intern</option>
                                     <option value="web">Web Development Intern</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <input type="url" name="linkedin" placeholder="LinkedIn Profile (optional)">
+                                <label for="linkedin">LinkedIn Profile</label>
+                                <input type="url" id="linkedin" name="linkedin" placeholder="Enter your LinkedIn URL (optional)">
                             </div>
                             <div class="form-group">
-                                <input type="url" name="portfolio" placeholder="Portfolio/GitHub Link">
+                                <label for="portfolio">Portfolio/GitHub</label>
+                                <input type="url" id="portfolio" name="portfolio" placeholder="Enter your portfolio/GitHub URL">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="reference" placeholder="Reference (if any)">
+                                <label for="reference">Reference</label>
+                                <input type="text" id="reference" name="reference" placeholder="Enter reference name (if any)">
                             </div>
                             <div class="form-group full-width">
-                                <textarea name="message" placeholder="Why do you want to join FuelLens?" required></textarea>
+                                <label for="message">Why do you want to join FuelLens?</label>
+                                <textarea id="message" name="message" placeholder="Tell us why you're interested in this internship..." required></textarea>
                             </div>
                             <div class="form-group full-width">
                                 <div class="file-upload">
-                                    <label for="resume">Upload Resume (PDF only)</label>
-                                    <input type="file" id="resume" name="resume" accept=".pdf" required>
-                                    <p class="file-hint">Maximum file size: 5MB</p>
+                                    <label for="resume">Upload Resume</label>
+                                    <div class="upload-area">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Drag & drop your resume here or click to browse</p>
+                                        <input type="file" id="resume" name="resume" accept=".pdf" required>
+                                    </div>
+                                    <p class="file-hint">Accepted format: PDF (Max size: 5MB)</p>
                                 </div>
                             </div>
                             <div class="form-group full-width">
-                                <button type="submit" class="btn btn-primary">Submit Application</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i> Submit Application
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -313,6 +334,7 @@
                 const phone = formData.get('phone');
                 const city = formData.get('city');
                 const college = formData.get('college');
+                const enrollment = formData.get('enrollment');
                 const course = formData.get('course');
                 const position = formData.get('position');
                 const linkedin = formData.get('linkedin');
@@ -329,6 +351,7 @@ Email: ${email}
 Phone: ${phone}
 City: ${city}
 College: ${college}
+Enrollment: ${enrollment}
 Course: ${course}
 Position: ${position}
 LinkedIn: ${linkedin || 'Not provided'}
@@ -370,8 +393,8 @@ Note: Please send your resume PDF to this WhatsApp number.
                 margin: 0 auto;
                 padding: 2rem;
                 background: white;
-                border-radius: 10px;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                border-radius: 15px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             }
 
             .form-grid {
@@ -381,21 +404,40 @@ Note: Please send your resume PDF to this WhatsApp number.
             }
 
             .form-group {
-                margin-bottom: 1rem;
+                margin-bottom: 1.5rem;
             }
 
             .form-group.full-width {
                 grid-column: 1 / -1;
             }
 
+            .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+                color: #333;
+                font-size: 0.95rem;
+            }
+
             .form-group input,
             .form-group select,
             .form-group textarea {
                 width: 100%;
-                padding: 12px;
+                padding: 12px 15px;
                 border: 1px solid #ddd;
-                border-radius: 5px;
+                border-radius: 8px;
                 font-size: 1rem;
+                transition: all 0.3s ease;
+                background-color: #f8f9fa;
+            }
+
+            .form-group input:focus,
+            .form-group select:focus,
+            .form-group textarea:focus {
+                outline: none;
+                border-color: #007bff;
+                box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+                background-color: #fff;
             }
 
             .form-group textarea {
@@ -407,15 +449,34 @@ Note: Please send your resume PDF to this WhatsApp number.
                 border: 2px dashed #ddd;
                 padding: 2rem;
                 text-align: center;
-                border-radius: 5px;
+                border-radius: 10px;
                 background: #f8f9fa;
+                transition: all 0.3s ease;
             }
 
-            .file-upload label {
-                display: block;
+            .file-upload:hover {
+                border-color: #007bff;
+                background: #f0f7ff;
+            }
+
+            .upload-area {
+                padding: 2rem;
+                cursor: pointer;
+            }
+
+            .upload-area i {
+                font-size: 2.5rem;
+                color: #007bff;
                 margin-bottom: 1rem;
-                font-weight: 500;
-                color: #333;
+            }
+
+            .upload-area p {
+                margin: 0.5rem 0;
+                color: #666;
+            }
+
+            .file-upload input[type="file"] {
+                display: none;
             }
 
             .file-hint {
@@ -428,11 +489,34 @@ Note: Please send your resume PDF to this WhatsApp number.
                 width: 100%;
                 padding: 1rem;
                 font-size: 1.1rem;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+                transform: translateY(-1px);
+            }
+
+            .btn-primary i {
+                font-size: 1.2rem;
             }
 
             @media (max-width: 768px) {
                 .form-grid {
                     grid-template-columns: 1fr;
+                }
+
+                .application-form {
+                    padding: 1.5rem;
                 }
             }
 
