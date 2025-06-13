@@ -228,10 +228,27 @@
                             <p class="qr-hint">Scan to pay via UPI</p>
                         </div>
                         <div class="payment-action">
-                            <button class="btn btn-pay" onclick="window.open('upi://pay?pa=vaibhavmakwana9979@okhdfcbank&pn=FuelLens', '_blank')">
+                            <button class="btn btn-pay" onclick="handleUPIPayment()">
                                 <i class="fas fa-wallet"></i> Pay Now
                             </button>
                         </div>
+                        
+                        <script>
+                        function handleUPIPayment() {
+                            try {
+                                const upiLink = 'upi://pay?pa=vaibhavmakwana9979@okhdfcbank&pn=FuelLens';
+                                const newWindow = window.open(upiLink, '_blank');
+                        
+                                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                                    throw new Error('Popup blocked or unsupported');
+                                }
+                            } catch (error) {
+                                alert("Payment could not be initiated.\n\nPossible reasons:\n- UPI not supported on this device\n- Popup blocked by browser\n- Transaction limit exceeded\n\nPlease try scanning the QR code instead.");
+                                console.error("UPI Payment Error:", error);
+                            }
+                        }
+                        </script>
+
                     </div>
                 </div>
             </div>
