@@ -215,44 +215,25 @@
             </div>
         </section>
 
-        <section class="payment-section">
-            <div class="container">
-                <h2>Internship Fee Payment</h2>
-                <div class="payment-content">
-                    <div class="payment-info">
-                        <p>Please scan the QR code below to pay your internship fee. The amount will be communicated to you during the application process.</p>
-                    </div>
-                    <div class="qr-code">
-                        <div class="qr-container">
-                            <img src="payment-qr.jpg" alt="Payment QR Code" class="qr-image">
-                            <p class="qr-hint">Scan to pay via UPI</p>
-                        </div>
-                        <div class="payment-action">
-                            <button class="btn btn-pay" onclick="handleUPIPayment()">
-                                <i class="fas fa-wallet"></i> Pay Now
-                            </button>
-                        </div>
-                        
-                        <script>
-                        function handleUPIPayment() {
-                            try {
-                                const upiLink = 'upi://pay?pa=vaibhavmakwana9979@okhdfcbank&pn=FuelLens';
-                                const newWindow = window.open(upiLink, '_blank');
-                        
-                                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                                    throw new Error('Popup blocked or unsupported');
-                                }
-                            } catch (error) {
-                                alert("Payment could not be initiated.\n\nPossible reasons:\n- UPI not supported on this device\n- Popup blocked by browser\n- Transaction limit exceeded\n\nPlease try scanning the QR code instead.");
-                                console.error("UPI Payment Error:", error);
-                            }
-                        }
-                        </script>
-
-                    </div>
+        <div class="payment-section">
+    <div class="container">
+        <h2>Internship Fee Payment</h2>
+        <div class="payment-content">
+            <div class="payment-info">
+                <p>Please scan the QR code below to pay your internship fee. The amount will be communicated to you during the application process.</p>
+            </div>
+            <div class="qr-code">
+                <div class="qr-container">
+                    <img src="payment-qr.jpg" alt="Payment QR Code" class="qr-image">
+                    <p class="qr-hint">Scan to pay via UPI</p>
+                    <p class="desktop-hint" style="color: red; margin-top: 10px;">
+                        Note: UPI payment may not work on desktop browsers. Please scan the QR using your mobile UPI app.
+                    </p>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</div>
 
         <section id="application-form" class="application-process">
             <div class="container">
