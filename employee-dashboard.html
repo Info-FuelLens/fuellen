@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard - FuelLens</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-gas-pump"></i>
+                    <span>FuelLens</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#tasks" class="nav-item active" data-tab="tasks">
+                    <i class="fas fa-tasks"></i>
+                    <span>Active Tasks</span>
+                </a>
+                <a href="#completed" class="nav-item" data-tab="completed">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Completed Tasks</span>
+                </a>
+                <a href="#profile" class="nav-item" data-tab="profile">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="php/logout.php" class="nav-item logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-content">
+                    <h1>Employee <span class="text-gradient">Dashboard</span></h1>
+                    <p>Manage your tasks and track your progress.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </button>
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>5</h3>
+                        <p>Pending Tasks</p>
+                        <span class="stat-change">2 due today</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>23</h3>
+                        <p>Completed Tasks</p>
+                        <span class="stat-change positive">+3 this week</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>2</h3>
+                        <p>In Progress</p>
+                        <span class="stat-change">Active work</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>92%</h3>
+                        <p>Performance Score</p>
+                        <span class="stat-change positive">+5% this month</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Tasks Tab -->
+            <div class="tab-content active" id="tasks-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Active Tasks</h2>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 24px;">
+                        <div class="feature-card">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                        <h3>Implement QR Code Scanner</h3>
+                                        <span style="background: rgba(239, 68, 68, 0.2); color: #ef4444; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">High</span>
+                                        <span style="background: rgba(59, 130, 246, 0.2); color: #3b82f6; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">In Progress</span>
+                                    </div>
+                                    <p style="color: #94a3b8; margin-bottom: 16px;">Develop QR code scanning functionality for tank verification system</p>
+                                    
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                                        <div>
+                                            <span style="color: #94a3b8; font-size: 14px;">Due Date:</span>
+                                            <p style="color: white; margin: 0;">2025-01-15</p>
+                                        </div>
+                                        <div>
+                                            <span style="color: #94a3b8; font-size: 14px;">Assigned By:</span>
+                                            <p style="color: white; margin: 0;">Admin</p>
+                                        </div>
+                                        <div>
+                                            <span style="color: #94a3b8; font-size: 14px;">Estimated Hours:</span>
+                                            <p style="color: white; margin: 0;">8h</p>
+                                        </div>
+                                        <div>
+                                            <span style="color: #94a3b8; font-size: 14px;">Progress:</span>
+                                            <p style="color: white; margin: 0;">5/8h</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Progress Bar -->
+                                    <div style="margin-bottom: 16px;">
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                            <span style="color: #94a3b8; font-size: 14px;">Progress</span>
+                                            <span style="color: white; font-size: 14px;">63%</span>
+                                        </div>
+                                        <div style="width: 100%; background: #374151; border-radius: 4px; height: 8px;">
+                                            <div style="background: linear-gradient(to right, #3b82f6, #06b6d4); height: 8px; border-radius: 4px; width: 63%; transition: width 0.3s ease;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 12px;">
+                                <button class="btn-primary" onclick="submitWork('TSK001')">
+                                    Submit Work
+                                </button>
+                                <button class="btn-outline">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="feature-card">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                        <h3>Update User Documentation</h3>
+                                        <span style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">Medium</span>
+                                        <span style="background: rgba(107, 114, 128, 0.2); color: #9ca3af; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">Pending</span>
+                                    </div>
+                                    <p style="color: #94a3b8; margin-bottom: 16px;">Create comprehensive user guide for the new dashboard features</p>
+                                    
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                                        <div>
+                                            <span style="color: #94a3b8; font-size: 14px;">Due Date:</span>
+                                            <p style="color: white; margin: 0;">2025-01-20</p>
+                                        </div>
+                                        <div>
+                                            <span style="color: #94a3b8; font-size: 14px;">Assigned By:</span>
+                                            <p style="color: white; margin: 0;">Project Manager</p>
+                                        </div>
+                                        <div>
+                                            <span style="color: #94a3b8; font-size: 14px;">Estimated Hours:</span>
+                                            <p style="color: white; margin: 0;">4h</p>
+                                        </div>
+                                        <div>
+                                            <span style="color: #94a3b8; font-size: 14px;">Progress:</span>
+                                            <p style="color: white; margin: 0;">0/4h</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Progress Bar -->
+                                    <div style="margin-bottom: 16px;">
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                            <span style="color: #94a3b8; font-size: 14px;">Progress</span>
+                                            <span style="color: white; font-size: 14px;">0%</span>
+                                        </div>
+                                        <div style="width: 100%; background: #374151; border-radius: 4px; height: 8px;">
+                                            <div style="background: linear-gradient(to right, #3b82f6, #06b6d4); height: 8px; border-radius: 4px; width: 0%; transition: width 0.3s ease;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 12px;">
+                                <button class="btn-primary" onclick="submitWork('TSK005')">
+                                    Submit Work
+                                </button>
+                                <button class="btn-outline">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="feature-card">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                        <h3>Bug Fix - Login Issues</h3>
+                                        <span style="background: rgba(239, 68, 68, 0.2); color: #ef4444; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">High</span>
+                                        <span style="background: rgba(107, 114, 128, 0.2); color: #9ca3af; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">Pending</span>
+                                    </div>
+                                    <p style="color: #94a3b8; margin-bottom: 16px;">Resolve authentication problems reported by users</p>
+                                    
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                                        <div>
+                                            <span style="color: #94a3b8; font-size: 14px;">Due Date:</span>
+                                            <p style="color: white; margin: 0;">2025-01-16</p>
+                                        </div>
+                                        <div>
+                                            <span style="color: #94a3b8; font-size: 14px;">Assigned By:</span>
+                                            <p style="color: white; margin: 0;">Tech Lead</p>
+                                        </div>
+                                        <div>
+                                            <span style="color: #94a3b8; font-size: 14px;">Estimated Hours:</span>
+                                            <p style="color: white; margin: 0;">3h</p>
+                                        </div>
+                                        <div>
+                                            <span style="color: #94a3b8; font-size: 14px;">Progress:</span>
+                                            <p style="color: white; margin: 0;">0/3h</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Progress Bar -->
+                                    <div style="margin-bottom: 16px;">
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                            <span style="color: #94a3b8; font-size: 14px;">Progress</span>
+                                            <span style="color: white; font-size: 14px;">0%</span>
+                                        </div>
+                                        <div style="width: 100%; background: #374151; border-radius: 4px; height: 8px;">
+                                            <div style="background: linear-gradient(to right, #3b82f6, #06b6d4); height: 8px; border-radius: 4px; width: 0%; transition: width 0.3s ease;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 12px;">
+                                <button class="btn-primary" onclick="submitWork('TSK008')">
+                                    Submit Work
+                                </button>
+                                <button class="btn-outline">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Completed Tasks Tab -->
+            <div class="tab-content" id="completed-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Completed Tasks</h2>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div class="feature-card">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                        <h3>API Testing</h3>
+                                        <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">Completed</span>
+                                    </div>
+                                    <p style="color: #94a3b8; margin-bottom: 16px;">Comprehensive testing of all API endpoints</p>
+                                    
+                                    <div style="display: flex; gap: 24px; font-size: 14px;">
+                                        <div>
+                                            <span style="color: #94a3b8;">Completed:</span>
+                                            <span style="color: white; margin-left: 8px;">2025-01-12</span>
+                                        </div>
+                                        <div style="display: flex; align-items: center; gap: 4px;">
+                                            <span style="color: #94a3b8;">Rating:</span>
+                                            <div style="display: flex; gap: 2px; margin-left: 8px;">
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <i class="fas fa-check-circle" style="color: #10b981; font-size: 32px;"></i>
+                            </div>
+                        </div>
+
+                        <div class="feature-card">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                        <h3>UI Component Library</h3>
+                                        <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">Completed</span>
+                                    </div>
+                                    <p style="color: #94a3b8; margin-bottom: 16px;">Create reusable UI components for the dashboard</p>
+                                    
+                                    <div style="display: flex; gap: 24px; font-size: 14px;">
+                                        <div>
+                                            <span style="color: #94a3b8;">Completed:</span>
+                                            <span style="color: white; margin-left: 8px;">2025-01-10</span>
+                                        </div>
+                                        <div style="display: flex; align-items: center; gap: 4px;">
+                                            <span style="color: #94a3b8;">Rating:</span>
+                                            <div style="display: flex; gap: 2px; margin-left: 8px;">
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                                <i class="fas fa-star" style="color: #374151; font-size: 12px;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <i class="fas fa-check-circle" style="color: #10b981; font-size: 32px;"></i>
+                            </div>
+                        </div>
+
+                        <div class="feature-card">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                        <h3>Database Migration</h3>
+                                        <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">Completed</span>
+                                    </div>
+                                    <p style="color: #94a3b8; margin-bottom: 16px;">Migrate user data to new database schema</p>
+                                    
+                                    <div style="display: flex; gap: 24px; font-size: 14px;">
+                                        <div>
+                                            <span style="color: #94a3b8;">Completed:</span>
+                                            <span style="color: white; margin-left: 8px;">2025-01-08</span>
+                                        </div>
+                                        <div style="display: flex; align-items: center; gap: 4px;">
+                                            <span style="color: #94a3b8;">Rating:</span>
+                                            <div style="display: flex; gap: 2px; margin-left: 8px;">
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                                <i class="fas fa-star" style="color: #fbbf24; font-size: 12px;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <i class="fas fa-check-circle" style="color: #10b981; font-size: 32px;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div class="tab-content" id="profile-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Employee Profile</h2>
+                    </div>
+                    <div class="profile-content">
+                        <div class="profile-avatar-section">
+                            <div class="profile-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3>John Doe</h3>
+                            <p>Senior Developer</p>
+                            <p style="color: #64748b; font-size: 14px;">EMP001</p>
+                        </div>
+
+                        <form class="profile-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" value="john.doe@fuellens.com" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input type="tel" value="+91 9876543210">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    <input type="text" value="Development" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Join Date</label>
+                                    <input type="text" value="January 15, 2024" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">
+                                    Update Profile
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Task Submission Modal -->
+    <div id="submission-modal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 10000; padding: 20px; overflow-y: auto;">
+        <div class="auth-card" style="max-width: 600px; margin: 0 auto;">
+            <div class="auth-header">
+                <h2>Submit Task Work</h2>
+                <p>Provide details about the work you've completed</p>
+            </div>
+
+            <form id="submission-form">
+                <input type="hidden" id="task-id-input" value="">
+                
+                <div class="form-group">
+                    <label for="work_description">Work Description *</label>
+                    <textarea id="work_description" required rows="4" 
+                              style="width: 100%; padding: 16px; background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: white; font-size: 16px; resize: vertical; font-family: inherit;"
+                              placeholder="Describe the work you've completed..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="additional_notes">Additional Notes</label>
+                    <textarea id="additional_notes" rows="3" 
+                              style="width: 100%; padding: 16px; background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: white; font-size: 16px; resize: vertical; font-family: inherit;"
+                              placeholder="Any additional notes or comments..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Attach Files</label>
+                    <div style="border: 2px dashed rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 32px; text-align: center; background: rgba(15, 23, 42, 0.3);">
+                        <i class="fas fa-upload" style="font-size: 48px; color: #94a3b8; margin-bottom: 16px;"></i>
+                        <p style="color: #94a3b8; margin-bottom: 16px;">Drag and drop files here, or click to select</p>
+                        <input type="file" multiple style="display: none;" id="file-upload">
+                        <button type="button" class="btn-outline" onclick="document.getElementById('file-upload').click()">
+                            Choose Files
+                        </button>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; gap: 16px; margin-top: 32px;">
+                    <button type="button" class="btn-outline" onclick="closeSubmissionModal()">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        Submit Work
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script>
+        // Employee-specific functionality
+        function submitWork(taskId) {
+            document.getElementById('task-id-input').value = taskId;
+            document.getElementById('submission-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSubmissionModal() {
+            document.getElementById('submission-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.getElementById('submission-form').reset();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('submission-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSubmissionModal();
+            }
+        });
+
+        // Form submission
+        document.getElementById('submission-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            setLoadingState(submitBtn, true);
+
+            // Simulate submission
+            setTimeout(() => {
+                setLoadingState(submitBtn, false);
+                showSuccessMessage('Work submitted successfully!');
+                closeSubmissionModal();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
