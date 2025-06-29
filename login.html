@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FuelLens</title>
+    <meta name="description" content="Login to FuelLens, the leading CNG management platform for fuel stations. Secure access for station owners and ERP portal users.">
+    <meta name="keywords" content="CNG management, fuel station, login, FuelLens, ERP portal, secure access, SaaS, India">
+    <link rel="canonical" href="https://fuellens.vercel.app/login.html">
+    <link rel="icon" href="favicon.ico">
+    <meta name="theme-color" content="#22C67F">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Login - FuelLens">
+    <meta property="og:description" content="Login to FuelLens, the leading CNG management platform for fuel stations. Secure access for station owners and ERP portal users.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fuellens.vercel.app/login.html">
+    <meta property="og:image" content="https://fuellens.vercel.app/2(1).png">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Login - FuelLens">
+    <meta name="twitter:description" content="Login to FuelLens, the leading CNG management platform for fuel stations. Secure access for station owners and ERP portal users.">
+    <meta name="twitter:image" content="https://fuellens.vercel.app/2(1).png">
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "FuelLens",
+      "url": "https://fuellens.vercel.app",
+      "logo": "https://fuellens.vercel.app/2(1).png"
+    }</script>
+    <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://fuellens.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Login",
+          "item": "https://fuellens.com/login.html"
+        }
+      ]
+    }</script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-72DHPES0R1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-72DHPES0R1');
+    </script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/form-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <img src="2(1).png" alt="Fuel Lens Logo" style="width: 70px; height: auto; margin-right: 15px;">
+                    <span>FuelLens</span>
+                </div>
+                <h1>Welcome <span class="text-gradient">Back</span></h1>
+                <p>Sign in to your FuelLens account</p>
+            </div>
+
+            <!-- Login Type Selector -->
+            <div class="login-type-selector">
+                <button type="button" class="login-type-btn active" data-type="station">
+                    <i class="fas fa-user-check"></i>
+                    Station Owner
+                </button>
+                <button type="button" class="login-type-btn" data-type="erp">
+                    <i class="fas fa-users"></i>
+                    ERP Portal
+                </button>
+            </div>
+
+            <!-- Station Owner Login Form -->
+            <form id="station-login-form" class="auth-form active" action="php/login_process.php" method="POST">
+                <input type="hidden" name="login_type" value="station">
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" required placeholder="Enter your password">
+                        <button type="button" class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember_me">
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Sign In
+                    <i class="fas fa-sign-in-alt"></i>
+                </button>
+            </form>
+
+            <!-- ERP Portal Login Form -->
+            <form id="erp-login-form" class="auth-form" action="php/login_process.php" method="POST">
+                <input type="hidden" name="login_type" value="erp">
+                
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <div class="input-group">
+                        <i class="fas fa-user-tag"></i>
+                        <select id="role" name="role" required>
+                            <option value="employee">Employee</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="employee_id">Employee ID</label>
+                    <div class="input-group">
+                        <i class="fas fa-id-card"></i>
+                        <input type="text" id="employee_id" name="employee_id" required placeholder="Enter your employee ID">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="erp_password">Password</label>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="erp_password" name="password" required placeholder="Enter your password">
+                        <button type="button" class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember_me">
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Sign In
+                    <i class="fas fa-sign-in-alt"></i>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="register.html">Sign up here</a></p>
+            </div>
+
+            <!-- Demo Credentials -->
+            <div class="demo-credentials">
+                <p>Demo Credentials:</p>
+                <div class="demo-grid">
+                    <div>
+                        <strong>Station Owner:</strong><br>
+                        demo@fuellens.com<br>
+                        password123
+                    </div>
+                    <div>
+                        <strong>ERP Portal:</strong><br>
+                        EMP001 / admin123<br>
+                        ADM001 / admin123
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/login.js"></script>
+</body>
+</html>
