@@ -852,21 +852,4 @@ body {
     opacity: 0.7;
     z-index: 1;
 }
-.vertical-timeline-marker {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #1e293b; /* optional background */
-    font-size: 24px;
-    z-index: 5;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 40px;
-    color: white;
-}
-.vertical-timeline-stop {
-    position: relative;
-    margin-bottom: 60px;
-}
+
