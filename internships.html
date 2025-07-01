@@ -702,23 +702,47 @@
             }
         });
 
-        // Form submission
+        // Form submission - send data to WhatsApp
         document.getElementById('internship-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            if (!validateForm(this)) {
+            // Validate form (add your own validation if needed)
+            if (!this.checkValidity()) {
+                this.reportValidity();
                 return;
             }
 
-            const submitBtn = this.querySelector('button[type="submit"]');
-            setLoadingState(submitBtn, true);
+            // Collect form data
+            const position = document.getElementById('position-input').value;
+            const fullName = document.getElementById('full_name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const university = document.getElementById('university').value;
+            const course = document.getElementById('course').value;
+            const year = document.getElementById('year_of_study').value;
+            const portfolio = document.getElementById('portfolio_url').value;
+            const linkedin = document.getElementById('linkedin_url').value;
+            const coverLetter = document.getElementById('cover_letter').value;
 
-            // Simulate form submission
-            setTimeout(() => {
-                setLoadingState(submitBtn, false);
-                showSuccessMessage('Application submitted successfully! We will review your application and get back to you soon.');
-                closeApplicationModal();
-            }, 2000);
+            // Format WhatsApp message
+            let message = `Internship Application%0A`;
+            message += `Position: ${position}%0A`;
+            message += `Full Name: ${fullName}%0A`;
+            message += `Email: ${email}%0A`;
+            message += `Phone: ${phone}%0A`;
+            message += `University: ${university}%0A`;
+            message += `Course/Major: ${course}%0A`;
+            message += `Year of Study: ${year}%0A`;
+            if (portfolio) message += `Portfolio: ${portfolio}%0A`;
+            if (linkedin) message += `LinkedIn: ${linkedin}%0A`;
+            message += `Cover Letter: ${coverLetter}`;
+
+            // WhatsApp Click to Chat URL
+            const whatsappUrl = `https://wa.me/919157027713?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+
+            // Optionally close modal and reset form
+            closeApplicationModal();
         });
     </script>
 </body>
